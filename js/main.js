@@ -41,7 +41,7 @@ function handleTurn() {
         return square === event.target;
     });
     board[idx] = turn;
-    let imageUrl = turn === 'X' ? './image/imageX.jpg' : './image/imageO.png';
+    let imageUrl = turn === 'X' ? './image/imagex.jpg' : './image/imageO.png';
     board[idx] = imageUrl;
     turn = turn === 'X' ? 'O' : 'X';
     win = getWinner();
@@ -72,8 +72,8 @@ function render() {
         messages.textContent = `C'est une égalité`;
     } 
     //X gagne
-    else if (win === './image/imageX.jpg') {
-        messages.innerHTML = `<p id="win-text">Le gagnant est: <img src="./image/imageX.jpg" alt="Player X wins!" class="game-piece2"></p>`;
+    else if (win === './image/imagex.jpg') {
+        messages.innerHTML = `<p id="win-text">Le gagnant est: <img src="./image/imagex.jpg" alt="Player X wins!" class="game-piece2"></p>`;
         PointX();
     }
     //O gagne 
@@ -85,7 +85,7 @@ function render() {
     else {
         //X tour
         if (turn === 'X') {
-            messages.innerHTML = `<p id="win-text">C'est le tour des <img src="./image/imageX.jpg" alt="Player X's turn" class="game-piece2"></p>`;
+            messages.innerHTML = `<p id="win-text">C'est le tour des <img src="./image/imagex.jpg" alt="Player X's turn" class="game-piece2"></p>`;
         } 
         //O tour
         else {
