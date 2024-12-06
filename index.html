@@ -14,6 +14,12 @@
 <body>
     <h1>Tic-Tac-Toe</h1>
     <h2>C'est le tour des X!</h2>
+    <img src="https://static.vecteezy.com/system/resources/previews/012/961/340/original/human-skull-front-view-black-and-white-hand-drawn-illustration-isolated-on-white-background-vector.jpg" alt="" id="imagex" height="50">
+    <label for="" id="pointX"></label>
+    <br>
+    <img src="https://png.pngtree.com/png-clipart/20220823/original/pngtree-cartoon-knife-png-image_8474239.png" alt="" id="imagex" height="50">
+    <label for="" id="pointO"></label>
+    <br>
     <!-- Many websites are just divs on divs on divs. -->
     <div class="flex-container flex-column">
         <div class="flex-container flex-wrap" id="board">
@@ -30,5 +36,30 @@
         <!-- I added a little reset button because our users are going to want to play round after round of our glorious game without ever refreshing the browser! -->
         <button id="reset-button">réinitialisation</button>
     </div>
+    <dialog>
+        <h1 id="titre">
+            Projet personnel
+        </h1>
+        <p id="desing">
+            Design web gr.2 - Automne 2024
+        </p>
+        <div id="gridContaineur">
+            <b id="realiser">
+                Realise par
+            </b>
+            <p id="nom">
+                Mathis Beaulac
+            </p>
+            <b id="Inspiration">
+                Inspiration
+            </b>
+            <a href="https://github.com/annaelizabeth2019/tictactoetwo" id="lien">https://github.com/annaelizabeth2019/tictactoetwo</a>
+            <img src="https://design-web-victo.github.io/assets/images/megaman.png" alt="" id="image" width="150" height="150"> 
+        </div>
+        <form action="dialog">
+            <button type="button" id="fermer">Fermer la fenetre</button>
+        </form>
+        <button id="fermerToujours">Ne plus afficher la fenetre</button>
+    </dialog>
 </body>
 </html>

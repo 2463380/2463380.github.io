@@ -11,9 +11,8 @@ const winningCombos = [
     ];
 
 /*----- app's state (variables) -----*/
-
 let board;
-let turn = 'X';
+var turn = "X";
 let win;
 
 /*----- cached element references -----*/
@@ -41,6 +40,8 @@ function handleTurn() {
         return square === event.target;
     });
     board[idx] = turn;
+    let imageUrl = turn === 'X' ? './image/imageX.jpg' : './image/imageO.png';
+    board[idx] = imageUrl;
     turn = turn === 'X' ? 'O' : 'X';
     win = getWinner();
     render();
@@ -57,10 +58,75 @@ function init() {
 
 function render() {
     board.forEach(function(mark, index) {
-    //this moves the value of the board item into the squares[idx]
-    squares[index].textContent = mark;
+        if (mark) {
+            squares[index].innerHTML = `<img src="${mark}" alt="player" class="game-piece">`;
+        } else {
+            squares[index].textContent = "";
+        }
     });
-    messages.textContent = win === 'T' ? `c'est une egaliter, Rene!` : win ? `${win} partie gagner!` : `C'est le tour des ${turn}`;
-    };
+    if (win === 'T') {
+        messages.textContent = `C'est une égalité`;
+    } 
+    else if (win === './image/imageX.jpg') {
+        messages.innerHTML = `<p id="win-text">Le gagnant est: <img src="./image/imageX.jpg" alt="Player X wins!" class="game-piece2"></p>`;
+        PointX();
+    } else if (win === './image/imageO.png') {
+        messages.innerHTML = `<p id="win-text">Le gagnant est: <img src="./image/imageO.png" alt="Player O wins!" class="game-piece2"></p>`;
+        PointO();
+    } 
+    else {
+        if (turn === 'X') {
+            messages.innerHTML = `<p id="win-text">C'est le tour des <img src="./image/imageX.jpg" alt="Player X's turn" class="game-piece2"></p>`;
+        } 
+        else {
+            messages.innerHTML = `<p id="win-text">C'est le tour des <img src="./image/imageO.png" alt="Player O's turn" class="game-piece2"></p>`;
+        }
+    }
+};
 
 init();
+
+
+let compteurx = localStorage.getItem('compteurx');
+compteurx = compteurx ? parseInt(compteurx) : 0;
+function PointX(){
+    compteurx++;
+    localStorage.setItem('compteurx', compteurx);
+    document.getElementById('pointX').textContent = compteurx;
+};
+document.getElementById('pointX').textContent = compteurx;
+
+let compteurO = localStorage.getItem('compteurO');
+compteurO = compteurO ? parseInt(compteurO) : 0;
+function PointO(){
+    compteurO++;
+    localStorage.setItem('compteurO', compteurO);
+    document.getElementById('pointO').textContent = compteurO;
+};
+document.getElementById('pointO').textContent = compteurO;
+
+const dialog = document.querySelector("dialog");
+const showButton = document.querySelector("dialog + button");
+const closeButton = document.querySelector("dialog button");
+
+if (localStorage.getItem('ouverture') === null) {
+    localStorage.setItem('ouverture', 0);
+}
+
+function showDialog() {
+    if (localStorage.getItem('ouverture') === '0') {
+        dialog.showModal();
+    } else {
+        dialog.close();
+    }
+}
+showDialog();
+
+closeButton.addEventListener("click", () => {
+    dialog.close();
+});
+
+document.getElementById("fermerToujours").addEventListener("click", () => {
+    localStorage.setItem('ouverture', 1);
+    dialog.close();
+});
