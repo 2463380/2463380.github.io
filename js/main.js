@@ -26,7 +26,7 @@ document.getElementById('reset-button').addEventListener('click', init);
 
 
 /*----- functions -----*/
-//regard si un joueur a gagner
+/*regard si un joueur a gagner*/
 function getWinner() {
     let winner = null;
     winningCombos.forEach(function(combo, index) {
@@ -35,7 +35,7 @@ function getWinner() {
         return winner ? winner : board.includes('') ? null : 'T';
 };
 
-//fonction qu'il fait a chaque tour et le changement de joueur
+/*fonction qu'il fait a chaque tour et le changement de joueur*/
 function handleTurn() {
     let idx = squares.findIndex(function(square) {
         return square === event.target;
@@ -48,7 +48,7 @@ function handleTurn() {
     render();
 };
 
-//board
+/*board*/
 function init() {
     board = [
     '', '', '',
@@ -57,9 +57,9 @@ function init() {
     ];
     render();
 };
-//affiche
+/*affiche*/
 function render() {
-    //Met des image dans le html et si rien met rien
+    /*Met des image dans le html et si rien met rien*/
     board.forEach(function(mark, index) {
         if (mark) {
             squares[index].innerHTML = `<img src="${mark}" alt="player" class="game-piece">`;
@@ -67,27 +67,27 @@ function render() {
             squares[index].textContent = "";
         }
     });
-    //egaliter
+    /*egaliter*/
     if (win === 'T') {
         messages.textContent = `C'est une égalité`;
     } 
-    //X gagne
+    /*X gagne*/
     else if (win === './image/imagex.jpg') {
         messages.innerHTML = `<p id="win-text">Le gagnant est: <img src="./image/imagex.jpg" alt="Player X wins!" class="game-piece2"></p>`;
         PointX();
     }
-    //O gagne 
+    /*O gagne*/
     else if (win === './image/imageO.png') {
         messages.innerHTML = `<p id="win-text">Le gagnant est: <img src="./image/imageO.png" alt="Player O wins!" class="game-piece2"></p>`;
         PointO();
     } 
-    //tour
+    /*tour*/
     else {
-        //X tour
+        /*X tour*/
         if (turn === 'X') {
             messages.innerHTML = `<p id="win-text">C'est le tour des <img src="./image/imagex.jpg" alt="Player X's turn" class="game-piece2"></p>`;
         } 
-        //O tour
+        /*O tour*/
         else {
             messages.innerHTML = `<p id="win-text">C'est le tour des <img src="./image/imageO.png" alt="Player O's turn" class="game-piece2"></p>`;
         }
@@ -96,11 +96,11 @@ function render() {
 
 init();
 
-//point X
+/*point X*/
 let compteurx = localStorage.getItem('compteurx');
 compteurx = compteurx ? parseInt(compteurx) : 0;
 
-//fait +1 au localStorage
+/*fait +1 au localStorage*/
 function PointX(){
     compteurx++;
     localStorage.setItem('compteurx', compteurx);
@@ -108,11 +108,11 @@ function PointX(){
 };
 document.getElementById('pointX').textContent = compteurx;
 
-//Point O
+/*Point O*/
 let compteurO = localStorage.getItem('compteurO');
 compteurO = compteurO ? parseInt(compteurO) : 0;
 
-//fait +1 au localStorage
+/*fait +1 au localStorage*/
 function PointO(){
     compteurO++;
     localStorage.setItem('compteurO', compteurO);
@@ -120,19 +120,19 @@ function PointO(){
 };
 document.getElementById('pointO').textContent = compteurO;
 
-//Dialog
+/*Dialog
 
-//variable dialog
+variable dialog*/
 const dialog = document.querySelector("dialog");
 const showButton = document.querySelector("dialog + button");
 const closeButton = document.querySelector("dialog button");
 
-//creer un localStorage
+/*creer un localStorage*/
 if (localStorage.getItem('ouverture') === null) {
     localStorage.setItem('ouverture', 0);
 }
 
-//montre le dialog
+/*montre le dialog*/
 function showDialog() {
     if (localStorage.getItem('ouverture') === '0') {
         dialog.showModal();
@@ -142,12 +142,12 @@ function showDialog() {
 }
 showDialog();
 
-//ferme le dialog
+/*ferme le dialog*/
 closeButton.addEventListener("click", () => {
     dialog.close();
 });
 
-//ferme le dialog et apparait plus
+/*ferme le dialog et apparait plus*/
 document.getElementById("fermerToujours").addEventListener("click", () => {
     localStorage.setItem('ouverture', 1);
     dialog.close();
