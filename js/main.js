@@ -59,8 +59,8 @@ function init() {
 };
 //affiche
 function render() {
+    //Met des image dans le html et si rien met rien
     board.forEach(function(mark, index) {
-        //Met des image dans le html et si rien met rien
         if (mark) {
             squares[index].innerHTML = `<img src="${mark}" alt="player" class="game-piece">`;
         } else {
