@@ -120,3 +120,7 @@ h2 {
 #win-text{
     margin: 0px;
 }
+#fermerToujours{
+    border: none;
+    outline:none;
+}
